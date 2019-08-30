@@ -1,7 +1,7 @@
 package com.snake;
 
-public class Config {
-
+public class Config
+{
     public static final int WIDTH = 500;
     public static final int HEIGTH = 500;
     // Height and width of window.
@@ -14,6 +14,6 @@ public class Config {
     public static final int COL = 45;
     // The number of rows and columns of the game.
 
-    public static final int INTERVAL = 100;
+    public static final int INTERVAL = 80;
     // Snake moving time interval.
 }

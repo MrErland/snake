@@ -1,5 +1,6 @@
 package com.snake;
 
-public enum Direction {     // 上下左右四个方向
+public enum Direction
+{
     UP, DOWN, LEFT, RIGHT
 }

@@ -1,19 +1,39 @@
 package com.snake;
 
-public class Block {
+public class Block
+{
+    private int col;
+    private int row;
 
-    public int col;
-    public int row;
-    // 位置坐标
-    // 设置为public方便调用
-
-    Block(int row, int col) {
+    Block(int row, int col)
+    {
         this.col = col;
         this.row = row;
     }
 
-    Block() {
+    Block()
+    {
         col = 0;
         row = 0;
+    }
+
+    public int getCol()
+    {
+        return this.col;
+    }
+
+    public int getRow()
+    {
+        return this.row;
+    }
+
+    public void setCol(int col)
+    {
+        this.col = col;
+    }
+
+    public void setRow(int row)
+    {
+        this.row = row;
     }
 }
