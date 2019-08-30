@@ -5,17 +5,13 @@ import java.util.LinkedList;
 public class Snake
 {
     private Direction snakeDir;
-
     private Direction moveDir;
-
     private Food food;
-
     private LinkedList<Block> snakeBody;
+    private static final int Row = Config.ROW;
+    private static final int Column = Config.COL;
 
-    public static final int Row = Config.ROW;
-    public static final int Column = Config.COL;
-
-    public Snake()
+    Snake()
     {
         snakeBody = new LinkedList<Block>();
         reset();
@@ -51,7 +47,7 @@ public class Snake
         this.moveDir = dir;
     }
 
-    public void reset()
+    private void reset()
     {
         snakeBody.clear();
         Block beginPos = null;
@@ -127,7 +123,7 @@ public class Snake
 
     private boolean isFood(Block addPos)
     {
-        if (food.row == addPos.getRow() && food.col == addPos.getCol())
+        if (food.getRow() == addPos.getRow() && food.getCol() == addPos.getCol())
         {
             return true;
         }

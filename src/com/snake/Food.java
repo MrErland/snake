@@ -5,13 +5,11 @@ import java.util.Random;
 
 public class Food extends Block
 {
-
-    public int row;
-    public int col;
+    private int row;
+    private int col;
     private Random rand;
-
-    public static final int Row = Config.ROW;
-    public static final int Column = Config.COL;
+    private static final int Row = Config.ROW;
+    private static final int Column = Config.COL;
 
     Food()
     {

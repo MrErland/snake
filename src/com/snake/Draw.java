@@ -25,7 +25,6 @@ public class Draw
 class BoardFrame extends JFrame
 {
     private Snake snk;
-
     public static final int INTERVAL = Config.INTERVAL;
 
     public BoardFrame()
@@ -59,11 +58,10 @@ class BoardFrame extends JFrame
 
 class MyKeyEventPostProcessor implements KeyEventPostProcessor
 {
-
     private Snake snk;
 
-    public boolean postProcessKeyEvent(KeyEvent e) {
-
+    public boolean postProcessKeyEvent(KeyEvent e)
+    {
         Direction dir = null;
         switch (e.getKeyCode())
         {
@@ -96,12 +94,12 @@ class MyKeyEventPostProcessor implements KeyEventPostProcessor
 
 class BoardComponent extends JComponent
 {
-    public static final int Width = Config.WIDTH;
-    public static final int Height = Config.HEIGTH;
-    public static final int TileWidth = Config.TILE_WIDTH;
-    public static final int TileHeight = Config.TILE_HEIGHT;
-    public static final int Row = Config.ROW;
-    public static final int Column = Config.COL;
+    private static final int Width = Config.WIDTH;
+    private static final int Height = Config.HEIGTH;
+    private static final int TileWidth = Config.TILE_WIDTH;
+    private static final int TileHeight = Config.TILE_HEIGHT;
+    private static final int Row = Config.ROW;
+    private static final int Column = Config.COL;
     private static final int XOffset = (Width - Column * TileWidth) / 2;
     private static final int YOffset = (Height - Row * TileHeight) / 2;
     private Snake snk;
@@ -118,7 +116,7 @@ class BoardComponent extends JComponent
         drawFill(g);
     }
 
-    public void drawFill(Graphics g)
+    private void drawFill(Graphics g)
     {
         g.setColor(Color.BLACK);
         for (Block sp : snk.getSnakeBody())
@@ -127,10 +125,10 @@ class BoardComponent extends JComponent
         }
         Food fd = snk.getFood();
         g.setColor(Color.RED);
-        g.fillRect(fd.col * TileWidth + XOffset, fd.row * TileHeight + YOffset, TileWidth, TileHeight);
+        g.fillRect(fd.getCol() * TileWidth + XOffset, fd.getRow() * TileHeight + YOffset, TileWidth, TileHeight);
     }
 
-    public void drawDecoration(Graphics g)
+    private void drawDecoration(Graphics g)
     {
         g.setColor(Color.GRAY);
         g.drawRect(XOffset, YOffset, Column * TileWidth, Row * TileHeight);
