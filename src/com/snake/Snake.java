@@ -9,7 +9,7 @@ public class Snake
     private Food food;
     private LinkedList<Block> snakeBody;
     private static final int Row = Config.ROW;
-    private static final int Column = Config.COL;
+    private static final int Col = Config.COL;
 
     Snake()
     {
@@ -54,7 +54,7 @@ public class Snake
         setMoveDir(null);
         do {
             beginPos = RandomBlock();
-        } while (beginPos.getRow() + 3 > Row);
+        } while (beginPos.getRow() + 3 > Row || beginPos.getCol() + 3 > Col);
 
         snakeBody.add(beginPos);
         snakeBody.add(new Block(beginPos.getRow() + 1, beginPos.getCol()));
@@ -66,7 +66,7 @@ public class Snake
     {
 
         int randomRow = (int) (Math.random() * Row);
-        int randomCol = (int) (Math.random() * Column);
+        int randomCol = (int) (Math.random() * Col);
         return new Block(randomRow, randomCol);
     }
 
@@ -132,7 +132,7 @@ public class Snake
 
     private boolean isCollision(Block addPos)
     {
-        if (addPos.getRow() < 0 || addPos.getRow() > Row - 1 || addPos.getCol() < 0 || addPos.getCol() > Column - 1)
+        if (addPos.getRow() < 0 || addPos.getRow() > Row - 1 || addPos.getCol() < 0 || addPos.getCol() > Col - 1)
         {
             return true;
         }

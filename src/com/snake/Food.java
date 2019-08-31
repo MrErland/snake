@@ -7,20 +7,21 @@ public class Food extends Block
 {
     private int row;
     private int col;
-    private Random rand;
+    private Random rand = new Random(System.nanoTime());
     private static final int Row = Config.ROW;
     private static final int Column = Config.COL;
 
     Food()
     {
-        rand = new Random();
         randomPos();
     }
 
     public Food getSnake(LinkedList<Block> snakeBody)
     {
         while (checkSame(snakeBody))
+        {
             randomPos();
+        }
         return this;
     }
 
@@ -40,5 +41,15 @@ public class Food extends Block
     {
         this.row = rand.nextInt(Row);
         this.col = rand.nextInt(Column);
+    }
+
+    @Override protected int getRow()
+    {
+        return this.row;
+    }
+
+    @Override protected int getCol()
+    {
+        return this.col;
     }
 }
