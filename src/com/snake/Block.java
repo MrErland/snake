@@ -17,12 +17,12 @@ public class Block
         row = 0;
     }
 
-    protected int getCol()
+    public int getCol()
     {
         return this.col;
     }
 
-    protected int getRow()
+    public int getRow()
     {
         return this.row;
     }

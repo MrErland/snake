@@ -54,7 +54,7 @@ public class Snake
         setMoveDir(null);
         do {
             beginPos = RandomBlock();
-        } while (beginPos.getRow() + 3 > Row || beginPos.getCol() + 3 > Col);
+        } while (beginPos.getRow() + 3 > Row || beginPos.getRow() < Row / 3);
 
         snakeBody.add(beginPos);
         snakeBody.add(new Block(beginPos.getRow() + 1, beginPos.getCol()));

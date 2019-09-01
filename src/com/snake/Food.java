@@ -43,12 +43,12 @@ public class Food extends Block
         this.col = rand.nextInt(Column);
     }
 
-    @Override protected int getRow()
+    @Override public int getRow()
     {
         return this.row;
     }
 
-    @Override protected int getCol()
+    @Override public int getCol()
     {
         return this.col;
     }
