@@ -64,7 +64,6 @@ public class Snake
 
     private Block RandomBlock()
     {
-
         int randomRow = (int) (Math.random() * Row);
         int randomCol = (int) (Math.random() * Col);
         return new Block(randomRow, randomCol);
@@ -80,10 +79,15 @@ public class Snake
         Direction left = Direction.LEFT;
         Direction right = Direction.RIGHT;
 
-        if ((moveDir != null) && !((snakeDir == up && moveDir == down) || (snakeDir == down && moveDir == up)
+        if (moveDir == null || snakeDir == moveDir)
+        {
+            snakeDir = new BfsPolicy().moveTo(this);      // bfs,
+            moveDir = snakeDir;
+        }
+        else if (!((snakeDir == up && moveDir == down) || (snakeDir == down && moveDir == up)
                 || (snakeDir == left && moveDir == right) || (snakeDir == right && moveDir == left)))
         {
-            snakeDir = moveDir;
+            snakeDir = moveDir;    // keyboard input
         }
 
         switch (snakeDir)
@@ -123,11 +127,7 @@ public class Snake
 
     private boolean isFood(Block addPos)
     {
-        if (food.getRow() == addPos.getRow() && food.getCol() == addPos.getCol())
-        {
-            return true;
-        }
-        return false;
+        return food.getRow() == addPos.getRow() && food.getCol() == addPos.getCol();
     }
 
     private boolean isCollision(Block addPos)

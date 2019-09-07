@@ -17,6 +17,16 @@ public class Block
         row = 0;
     }
 
+    @Override public boolean equals(Object object)
+    {
+        if (object == null) return false;
+        if (object instanceof Block)
+        {
+            return ((Block) object).col == this.col && ((Block) object).row == this.row;
+        }
+        return false;
+    }
+
     public int getCol()
     {
         return this.col;
