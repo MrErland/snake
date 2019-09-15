@@ -29,7 +29,7 @@ public class Block
 
     @Override public int hashCode()
     {
-        return col ^ (col >> 16) + row ^ (row >> 16) + super.hashCode();
+        return col * 13 + row * 23 + super.hashCode();
     }
 
     public int getCol()

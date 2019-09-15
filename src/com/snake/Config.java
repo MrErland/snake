@@ -14,7 +14,7 @@ public class Config
     public static final int COL = 45;
     // The number of rows and columns of the game.
 
-    public static final int INTERVAL = 20;
+    public static final int INTERVAL = 10;
     // Snake moving time interval.
 
     public static final boolean isOpenAuto = true;

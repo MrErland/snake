@@ -11,11 +11,10 @@ public abstract class Policy implements AutoMove
     public Direction moveTo(Snake snk)
     {
         Block head = snk.getSnakeBody().getFirst();
-        Direction dir = snk.getSnakeDir();
         Block goal = snk.getFood();
         List<Block> body = snk.getSnakeBody();
 
-        HashMap<Block, Integer> startPoints = getStartPoints(head, dir);
+        HashMap<Block, Integer> startPoints = getStartPoints(head, snk.getSnakeBody());
         return getDirectionFromBlock(coreMethods(startPoints, goal, body), head);
     }
 
@@ -30,6 +29,10 @@ public abstract class Policy implements AutoMove
 
     private Direction getDirectionFromBlock(Block block, Block head)
     {
+        if (block == null)
+        {
+            return Enums.random(Direction.class);  // random return a direction
+        }
         if (block.getCol() - head.getCol() == 1 && block.getRow() == head.getRow())
         {
             return Direction.RIGHT;
@@ -55,80 +58,42 @@ public abstract class Policy implements AutoMove
                 && block.getCol() >= 0 && block.getCol() < Config.COL;
     }
 
-    private HashMap<Block, Integer> getStartPoints(Block head, Direction dir)
+    private boolean checkForbid(Block block, List<Block> forbid)
+    {
+        for (Block b : forbid)
+        {
+            if (block.equals(b))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private HashMap<Block, Integer> getStartPoints(Block head, List<Block> forbid)
     {
         HashMap<Block, Integer> startPoint = new HashMap<>();
-        Block tmp = null;
-        switch (dir)
+        Block tmp;
+
+        tmp = new Block(head.getRow() - 1, head.getCol());
+        if (checkBlock(tmp) && checkForbid(tmp, forbid))
         {
-            case UP:
-                tmp = new Block(head.getRow() - 1, head.getCol());
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                tmp = new Block(head.getRow(), head.getCol() - 1);
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                tmp = new Block(head.getRow(), head.getCol() + 1);
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                break;
-            case DOWN:
-                tmp = new Block(head.getRow() + 1, head.getCol());
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                tmp = new Block(head.getRow(), head.getCol() - 1);
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                tmp = new Block(head.getRow(), head.getCol() + 1);
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                break;
-            case LEFT:
-                tmp = new Block(head.getRow() - 1, head.getCol());
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                tmp = new Block(head.getRow() + 1, head.getCol());
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                tmp = new Block(head.getRow(), head.getCol() - 1);
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                break;
-            case RIGHT:
-                tmp = new Block(head.getRow() - 1, head.getCol());
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                tmp = new Block(head.getRow() + 1, head.getCol());
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                tmp = new Block(head.getRow(), head.getCol() + 1);
-                if (checkBlock(tmp))
-                {
-                    startPoint.put(tmp, MAX_DISTANCE_INIT);
-                }
-                break;
+            startPoint.put(tmp, MAX_DISTANCE_INIT);
+        }
+        tmp = new Block(head.getRow() + 1, head.getCol());
+        if (checkBlock(tmp) && checkForbid(tmp, forbid))
+        {
+            startPoint.put(tmp, MAX_DISTANCE_INIT);
+        }
+        tmp = new Block(head.getRow(), head.getCol() - 1);
+        if (checkBlock(tmp) && checkForbid(tmp, forbid))
+        {
+            startPoint.put(tmp, MAX_DISTANCE_INIT);
+        }
+        tmp = new Block(head.getRow(), head.getCol() + 1);
+        if (checkBlock(tmp) && checkForbid(tmp, forbid))
+        {
+            startPoint.put(tmp, MAX_DISTANCE_INIT);
         }
         return startPoint;
     }

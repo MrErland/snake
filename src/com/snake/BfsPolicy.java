@@ -12,7 +12,7 @@ public class BfsPolicy extends Policy
         }
         ArrayList<Map.Entry<Block, Integer>> distance = new ArrayList(startPoints.entrySet());
         distance.sort(Comparator.comparingInt(Map.Entry::getValue));
-        return distance.get(0).getKey();
+        return distance.size() != 0 ? distance.get(0).getKey() : null;
     }
 
     private int bfsDistance(Block start, Block goal, List<Block> forbid)
