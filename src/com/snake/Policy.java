@@ -4,6 +4,10 @@ import java.util.*;
 
 public abstract class Policy implements AutoMove
 {
+    // default distance.
+    // it equals MAX_VALUE - 1, because snake's body distance will be set MAX_VALUE.
+    private final int MAX_DISTANCE_INIT = Integer.MAX_VALUE - 1;
+
     public Direction moveTo(Snake snk)
     {
         Block head = snk.getSnakeBody().getFirst();
@@ -18,7 +22,7 @@ public abstract class Policy implements AutoMove
     /*  Notice:
      *  subclass need realize this function.
      *  return the next block move to goal
-     *  @param startPoint: the next <possible blocks, default distance>
+     *  @param startPoint: <the next possible blocks, default distance>
      *  @param goal: the food
      *  @param forbid: the body of snake
      */
@@ -61,66 +65,70 @@ public abstract class Policy implements AutoMove
                 tmp = new Block(head.getRow() - 1, head.getCol());
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
                 tmp = new Block(head.getRow(), head.getCol() - 1);
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
                 tmp = new Block(head.getRow(), head.getCol() + 1);
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
+                break;
             case DOWN:
                 tmp = new Block(head.getRow() + 1, head.getCol());
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
                 tmp = new Block(head.getRow(), head.getCol() - 1);
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
                 tmp = new Block(head.getRow(), head.getCol() + 1);
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
+                break;
             case LEFT:
                 tmp = new Block(head.getRow() - 1, head.getCol());
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
                 tmp = new Block(head.getRow() + 1, head.getCol());
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
                 tmp = new Block(head.getRow(), head.getCol() - 1);
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
+                break;
             case RIGHT:
                 tmp = new Block(head.getRow() - 1, head.getCol());
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
                 tmp = new Block(head.getRow() + 1, head.getCol());
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
                 tmp = new Block(head.getRow(), head.getCol() + 1);
                 if (checkBlock(tmp))
                 {
-                    startPoint.put(tmp, Integer.MAX_VALUE);
+                    startPoint.put(tmp, MAX_DISTANCE_INIT);
                 }
+                break;
         }
         return startPoint;
     }

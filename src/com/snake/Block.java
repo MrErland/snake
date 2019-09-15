@@ -27,6 +27,11 @@ public class Block
         return false;
     }
 
+    @Override public int hashCode()
+    {
+        return col ^ (col >> 16) + row ^ (row >> 16) + super.hashCode();
+    }
+
     public int getCol()
     {
         return this.col;

@@ -5,11 +5,9 @@ import java.util.Random;
 
 public class Food extends Block
 {
-    private int row;
-    private int col;
     private Random rand = new Random(System.nanoTime());
     private static final int Row = Config.ROW;
-    private static final int Column = Config.COL;
+    private static final int Col = Config.COL;
 
     Food()
     {
@@ -29,7 +27,7 @@ public class Food extends Block
     {
         for (Block sp : snakeBody)
         {
-            if (sp.getRow() == this.row && sp.getCol() == this.col)
+            if (sp.getRow() == super.getRow() && sp.getCol() == super.getCol())
             {
                 return true;
             }
@@ -39,17 +37,17 @@ public class Food extends Block
 
     private void randomPos()
     {
-        this.row = rand.nextInt(Row);
-        this.col = rand.nextInt(Column);
+        super.setRow(rand.nextInt(Row));
+        super.setCol(rand.nextInt(Col));
     }
 
     @Override public int getRow()
     {
-        return this.row;
+        return super.getRow();
     }
 
     @Override public int getCol()
     {
-        return this.col;
+        return super.getCol();
     }
 }

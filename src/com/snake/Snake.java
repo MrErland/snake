@@ -79,12 +79,12 @@ public class Snake
         Direction left = Direction.LEFT;
         Direction right = Direction.RIGHT;
 
-        if (moveDir == null || snakeDir == moveDir)
+        if (Config.isOpenAuto)      // AutoMove module
         {
-            snakeDir = new BfsPolicy().moveTo(this);      // bfs,
+            snakeDir = new BfsPolicy().moveTo(this);
             moveDir = snakeDir;
         }
-        else if (!((snakeDir == up && moveDir == down) || (snakeDir == down && moveDir == up)
+        else if (moveDir != null && !((snakeDir == up && moveDir == down) || (snakeDir == down && moveDir == up)
                 || (snakeDir == left && moveDir == right) || (snakeDir == right && moveDir == left)))
         {
             snakeDir = moveDir;    // keyboard input
